@@ -1,0 +1,26 @@
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+.form input {
+  margin: 5px;
+  padding: 8px;
+  width: calc(33% - 10px);
+}
+.form button {
+  padding: 8px 16px;
+  margin-top: 10px;
+}
+.error {
+  color: red;
+}
+.list {
+  margin-top: 30px;
+}
+.hash-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
