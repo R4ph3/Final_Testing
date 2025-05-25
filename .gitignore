@@ -1,0 +1,14 @@
+# Node.js
+node_modules/
+dist/
+coverage/
+.env
+
+# Angular
+.angular/
+out-tsc/
+
+# Logs y sistema
+npm-debug.log
+.DS_Store
+Thumbs.db
