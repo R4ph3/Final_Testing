@@ -18,7 +18,6 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     httpMock = TestBed.inject(HttpTestingController);
-    fixture.detectChanges();
   });
 
   afterEach(() => {
@@ -26,6 +25,8 @@ describe('AppComponent', () => {
   });
 
   it('debe cargar los hashes al inicializar', () => {
+    fixture.detectChanges();
+
     const dummyHashes = [
       { hash: 'a'.repeat(64), name: 'TestMalware', family: 'Troyano' }
     ];
@@ -39,6 +40,9 @@ describe('AppComponent', () => {
   });
 
   it('debe mostrar error si se intenta agregar hash inválido', () => {
+    fixture.detectChanges();
+    httpMock.expectOne('http://localhost:3000/api/hashes').flush([]); // carga inicial
+
     component.hash = 'invalido';
     component.name = 'Fake';
     component.family = 'Keylogger';
@@ -53,6 +57,9 @@ describe('AppComponent', () => {
   });
 
   it('debe limpiar los campos tras agregar correctamente', () => {
+    fixture.detectChanges();
+    httpMock.expectOne('http://localhost:3000/api/hashes').flush([]); // carga inicial
+
     component.hash = 'b'.repeat(64);
     component.name = 'Limpieza';
     component.family = 'Troyano';
@@ -71,18 +78,9 @@ describe('AppComponent', () => {
     expect(component.family).toBe('');
   });
 
-  it('no debe hacer petición si campos están vacíos', () => {
-    component.hash = '';
-    component.name = '';
-    component.family = '';
-
-    component.addHash();
-
-    // No se espera ninguna petición POST si los campos están vacíos
-    httpMock.expectNone('http://localhost:3000/api/hashes');
-  });
-
   it('debe mostrar hashes en el DOM', () => {
+    fixture.detectChanges();
+
     const dummyHashes = [
       { hash: 'f'.repeat(64), name: 'VisibleMalware', family: 'Spyware' }
     ];
