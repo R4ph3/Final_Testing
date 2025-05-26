@@ -1,5 +1,6 @@
 <div class="container">
-  <h1>Registro de Hashes de Malware</h1>
+  <h1>Malware Hash Repository</h1>
+
   <div class="form">
     <input [(ngModel)]="hash" placeholder="SHA256 Hash" />
     <input [(ngModel)]="name" placeholder="Nombre del malware" />
@@ -8,12 +9,23 @@
     <p *ngIf="error" class="error">{{ error }}</p>
   </div>
 
-  <div class="list">
+  <div class="table-container">
     <h2>Hashes Registrados</h2>
-    <div *ngFor="let item of hashes" class="hash-item">
-      <p><strong>Hash:</strong> {{item.hash}}</p>
-      <p><strong>Nombre:</strong> {{item.name}}</p>
-      <p><strong>Familia:</strong> {{item.family}}</p>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Hash</th>
+          <th>Nombre</th>
+          <th>Familia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of hashes">
+          <td>{{ item.hash }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.family }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
